@@ -37,8 +37,6 @@ Benchmark.bm(25) do |x|
   x.report("#{n} deletes:"){n.times{|i| MongoMapperObject.first(:a => i).destroy}}
 end
 
-puts "\n*** Mongoid ***"
-
 Mongoid.configure do |config|
   config.master = db
 end
@@ -49,7 +47,7 @@ class MongoidObject
   index :a
 end
 
-puts "\n*** MongoMapper ***"
+puts "\n*** Mongoid ***"
 Benchmark.bm(25) do |x|
   x.report("#{n} inserts:"){n.times{|i| MongoidObject.create!(:a => i, :b => n-i)}}
   x.report("#{n} lookups:"){n.times{|i| MongoidObject.first(:conditions => {:a => i})}}
