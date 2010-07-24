@@ -17,10 +17,11 @@ SQLITE.create_table!(:t) do
   primary_key :_id
   Integer :a
   Integer :b
+  index :a
 end
 Benchmark.bm(25) do |x|
   x.report("#{n} inserts:"){n.times{|i| SQLITE[:t].insert(:a=>i, :b=>n - i)}}
-  x.report("#{n} lookups by id:"){n.times{|i| SQLITE[:t][:a=>i]}}
+  x.report("#{n} lookups:"){n.times{|i| SQLITE[:t][:a=>i]}}
   x.report("#{n/25} select alls:"){(n/25).times{|i| SQLITE[:t].all}}
   x.report("#{n} updates:"){n.times{|i| SQLITE[:t].filter(:a=>i).update(:b=>i)}}
   x.report("#{n} deletes:"){n.times{|i| SQLITE[:t].filter(:a=>i).delete}}
@@ -35,7 +36,7 @@ MONGO = Sequel.connect('mongo:///' + db_name)
 MONGO[:t].add_index :a
 Benchmark.bm(25) do |x|
   x.report("#{n} inserts:"){n.times{|i| MONGO[:t].insert(:a=>i, :b=>n - i)}}
-  x.report("#{n} lookups by id:"){n.times{|i| MONGO[:t][:a=>i]}}
+  x.report("#{n} lookups:"){n.times{|i| MONGO[:t][:a=>i]}}
   x.report("#{n/25} select alls:"){(n/25).times{|i| MONGO[:t].all}}
   x.report("#{n} updates:"){n.times{|i| MONGO[:t].filter(:a=>i).update(:b=>i)}}
   x.report("#{n} deletes:"){n.times{|i| MONGO[:t].filter(:a=>i).delete}}
