@@ -1,8 +1,26 @@
 source "http://rubygems.org"
 
+gem "i18n"
 gem "bson_ext"
 gem "mongo"
-gem "mongo_mapper"
-gem "mongoid"
-gem "sqlite3-ruby"
-gem "sequel"
+
+group :mongo_mapper do
+  gem "mongo_mapper"
+end
+
+group :mongoid do
+  gem "mongoid", ">= 2.0.0.beta11"
+end
+
+group :sequel do
+  gem "sqlite3-ruby"
+  gem "sequel"
+end
+
+group :mongomodel do
+  gem "mongomodel"
+end
+
+group :candy do
+  gem "candy"
+end
