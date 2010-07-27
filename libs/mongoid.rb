@@ -13,6 +13,8 @@ class MongoidObject
   field :b, :type => Integer
   index :a
 end
+MongoidObject.collection # needed for next line to work!!
+MongoidObject.create_indexes
 Benchmark.bm(25) do |x|
   x.report("#{conf.times} inserts:"){conf.times{|i| MongoidObject.create!(:a => i, :b => conf.times-i)}}
   x.report("#{conf.times} lookups:"){conf.times{|i| MongoidObject.first(:conditions => {:a => i})}}
