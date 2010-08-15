@@ -8,6 +8,7 @@
   "Candy" => "candy",
   "MongoRecord" => "mongo_record",
   "MongoDoc" => "mongo_doc",
+  "Mongomatic" => "mongomatic",
 }.each_with_index do |(name, filename), i|
   sleep 10 unless i.zero?
   puts "\n*** #{name} ***"

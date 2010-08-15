@@ -9,7 +9,7 @@ group :mongo_mapper do
 end
 
 group :mongoid do
-  gem "mongoid", "= 2.0.0.beta11"
+  gem "mongoid", "= 2.0.0.beta.16"
 end
 
 group :sequel do
@@ -31,4 +31,8 @@ end
 
 group :mongo_doc do
   gem "mongo_doc"
+end
+
+group :mongomatic do
+  gem "mongomatic"
 end
