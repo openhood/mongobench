@@ -36,3 +36,8 @@ end
 group :mongomatic do
   gem "mongomatic"
 end
+
+# Incompatible deps between the different libs
+# group :mongo_odm do
+#   gem "mongo_odm"
+# end
